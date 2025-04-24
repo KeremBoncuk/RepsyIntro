@@ -1,0 +1,25 @@
+# Java
+target/
+*.class
+
+# Maven
+*.log
+.settings/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# IntelliJ
+*.iws
+*.ipr
+*.iml
+out/
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
