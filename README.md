@@ -32,6 +32,8 @@ Activate the storage strategy at runtime with `STORAGE_STRATEGY` (`file-system` 
 ## Docker Usage
 Note: docker-compose.yml file is inside repsy-spring directory.
 
+However you can check out the containerized version of this app in: https://repsy.io/keremboncuk/docker/repsyintro_public_kb feel free to check it out. It comes with a docker-compose.yml 
+
 ### 1. Build
 docker-compose build
 
