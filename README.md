@@ -30,21 +30,20 @@ Activate the storage strategy at runtime with `STORAGE_STRATEGY` (`file-system` 
 | GET    | `/packages`                                | List all packages (database view) |
 
 ## Docker Usage
-Note: docker-compose.yml file is inside repsy-spring directory.
+Docker Container is in Repsy Repository:
 
-However you can check out the containerized version of this app in: https://repsy.io/keremboncuk/docker/repsyintro_public_kb feel free to check it out. It comes with a docker-compose.yml 
+https://repsy.io/keremboncuk/docker/repsyintro_public_kb
 
-### 1. Build
-docker-compose build
+You can run the docker file using:
 
+docker run -p 8080:8080 \
+  -e STORAGE_STRATEGY=file-system \
+  repo.repsy.io/keremboncuk/repsyintro_public_kb/repsy-spring:latest
 
-### 2. Run
-docker-compose up
+  Note: In order for the docker file to run it needs postgre (-p 5432) and minio (-p 9000) to run
 
-Starts repsy-spring, postgres, and (if object-storage) minio.
-
-### 3. Environment Variables
-Variable	Description	Default
+### Environment Variables
+Possible Environment Variables and their default values
 
 STORAGE_STRATEGY	--> file-system or object-storage	file-system
 
@@ -58,11 +57,13 @@ MINIO_BUCKET	--> MinIO bucket name	(by defaukt it is repsy-bucket)
 
 POSTGRES_USER / POSTGRES_PASSWORD	--> PostgreSQL credentials	(by default it is admin / admin)
 
- - You can change these default values from docker-compose.yml file which is inside "repsy-spring" module
- - OR you can mention these parameter on command as follows:
- - STORAGE_STRATEGY=object-storage docker-compose up
+To manage these environment variables feel free to use and change the values:
 
-Linux / macOS	Install Docker & Docker Compose; run commands above (preface with sudo if needed).
-Windows	Use Docker Desktop with WSL 2 backend; run commands in PowerShell, CMD, or Git Bash.
+docker run -p 8080:8080 \
+  -e STORAGE_STRATEGY=file-system \
+  -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/repsydb \
+  -e SPRING_DATASOURCE_USERNAME=repsyuser \
+  -e SPRING_DATASOURCE_PASSWORD=repsypass \
+  repo.repsy.io/keremboncuk/repsyintro_public_kb/repsy-spring:latest
 
-Configuration files are identical across platforms.
+
